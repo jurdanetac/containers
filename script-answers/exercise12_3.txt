@@ -1,0 +1,4 @@
+sudo docker start -i xenodochial_lovelace
+apt update
+apt install -y neovim
+nvim /usr/src/app/index.js
