@@ -1,0 +1,4 @@
+step1: sudo docker container run -it ubuntu bash
+step2: mkdir /usr/src/app
+step3: touch /usr/src/app/index.js
+step4: exit
