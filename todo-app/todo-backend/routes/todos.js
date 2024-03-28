@@ -24,6 +24,21 @@ router.post("/", async (req, res) => {
   res.send(todo);
 });
 
+/* PUT one todo by id. */
+router.put("/:id", async (req, res) => {
+  const todo = await Todo.findById(req.params.id);
+  const { text, done } = req.body;
+
+  if (!todo) return res.sendStatus(404);
+
+  if (text) todo.text = text;
+  if (done === "true" || done === "false") todo.done = done;
+
+  await todo.save();
+
+  res.send(todo);
+});
+
 const singleRouter = express.Router();
 
 const findByIdMiddleware = async (req, res, next) => {
