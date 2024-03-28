@@ -1,0 +1,4 @@
+nvim .dockerignore
+nvim Dockerfile
+sudo docker build -t todo-backend .
+sudo docker run -p 3000:3000 todo-backend
