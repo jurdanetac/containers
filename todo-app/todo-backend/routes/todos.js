@@ -8,6 +8,13 @@ router.get("/", async (_, res) => {
   res.send(todos);
 });
 
+/* GET one todo by id. */
+router.get("/:id", async (req, res) => {
+  const todo = await Todo.findById(req.params.id);
+
+  res.send(todo);
+});
+
 /* POST todo to listing. */
 router.post("/", async (req, res) => {
   const todo = await Todo.create({
