@@ -18,9 +18,15 @@ router.get("/", async (req, res) => {
 
 /* GET usage metadata. */
 router.get("/statistics", async (_, res) => {
-  const counter = await redis.getAsync("added_todos");
+  let counter = await redis.getAsync("added_todos");
+
+  if (!counter) {
+    await redis.setAsync("added_todos", 0);
+    counter = 0;
+  }
+
   res.send({
-    added_todos: counter,
+    added_todos: parseInt(counter),
   });
 });
 
