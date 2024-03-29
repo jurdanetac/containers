@@ -9,13 +9,6 @@ router.get("/", async (_, res) => {
   res.send(todos);
 });
 
-/* GET one todo by id. */
-router.get("/:id", async (req, res) => {
-  const todo = await Todo.findById(req.params.id);
-
-  res.send(todo);
-});
-
 /* POST todo to listing. */
 router.post("/", async (req, res) => {
   const counter = await redis.getAsync("added_todos");
@@ -25,21 +18,6 @@ router.post("/", async (req, res) => {
     text: req.body.text,
     done: false,
   });
-
-  res.send(todo);
-});
-
-/* PUT one todo by id. */
-router.put("/:id", async (req, res) => {
-  const todo = await Todo.findById(req.params.id);
-  const { text, done } = req.body;
-
-  if (!todo) return res.sendStatus(404);
-
-  if (text) todo.text = text;
-  if (done === "true" || done === "false") todo.done = done;
-
-  await todo.save();
 
   res.send(todo);
 });
@@ -62,12 +40,21 @@ singleRouter.delete("/", async (req, res) => {
 
 /* GET todo. */
 singleRouter.get("/", async (req, res) => {
-  res.sendStatus(405); // Implement this
+  const todo = await Todo.findById(req.todo._id);
+  res.send(todo);
 });
 
 /* PUT todo. */
 singleRouter.put("/", async (req, res) => {
-  res.sendStatus(405); // Implement this
+  const todo = req.todo;
+  const { text, done } = req.body;
+
+  if (typeof text === "string") todo.text = text;
+  if (typeof done === "boolean") todo.done = done;
+
+  await todo.save();
+
+  res.send(todo);
 });
 
 router.use("/:id", findByIdMiddleware, singleRouter);
