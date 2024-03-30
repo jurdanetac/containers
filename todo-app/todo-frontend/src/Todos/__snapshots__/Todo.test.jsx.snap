@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays correct information 1`] = `
+<div
+  style={
+    {
+      "display": "flex",
+      "justifyContent": "space-between",
+      "margin": "auto",
+      "maxWidth": "70%",
+    }
+  }
+>
+  <span>
+    This is a todo
+  </span>
+  <span>
+    This todo is not done
+  </span>
+  <span>
+    <button
+      onClick={[Function]}
+    >
+       Delete 
+    </button>
+    <button
+      onClick={[Function]}
+    >
+       Set as done 
+    </button>
+  </span>
+</div>
+`;
