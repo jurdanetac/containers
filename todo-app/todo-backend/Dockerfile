@@ -6,6 +6,7 @@ COPY --chown=node:node . .
 RUN npm ci
 
 ENV DEBUG=todo-backend:*
+ENV NODE_ENV=production
 
 USER node
 CMD npm start
