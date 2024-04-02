@@ -8,4 +8,14 @@ services:
       - ./frontend/:/usr/src/app # The path can be relative, so ./ is enough to say "the same location as the docker-compose.yml"
     ports:
       - 5173:5173
-    container_name: patientor-dev # This will name the container hello-front-dev
+    container_name: patientor-frontend-dev # This will name the container hello-front-dev
+  backend:
+    image: patientor-backend-dev # This will use the image patientor-backend-dev
+    build:
+      context: ./backend # The context will pick this directory as the "build context"
+      dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
+    volumes:
+      - ./backend/:/usr/src/app # The path can be relative, so ./ is enough to say "the same location as the docker-compose.yml"
+    ports:
+      - 3001:3001
+    container_name: patientor-backend-dev # This will name the container hello-front-dev
