@@ -6,6 +6,6 @@ COPY . .
 
 RUN npm install
 
-ENV DEBUG=todo-backend:*
+ENV DEBUG=backend:*
 
 CMD ["npm", "run", "dev", "--", "--host"]

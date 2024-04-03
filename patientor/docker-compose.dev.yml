@@ -25,7 +25,7 @@ services:
       - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 8080:80
-    container_name: patientor-reverse-proxy
+    container_name: patientor-reverse-proxy-dev
     depends_on:
       - frontend # wait for the frontend container to be started
       - backend # wait for the backend container to be started
